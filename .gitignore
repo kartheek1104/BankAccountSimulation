@@ -1,0 +1,4 @@
+*.class
+accounts.txt
+*_history.txt
+*.log
