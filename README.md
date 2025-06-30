@@ -21,9 +21,10 @@ A simple Java console application that simulates basic bank operations such as:
 ```bash
 javac BankApp.java
 java BankApp
-
+```
 
 # Usage Example
+```bash
 
 1. Login
 2. Register
@@ -60,3 +61,4 @@ Choice: 5
 Account Holder: John Doe
 Account Number: 1234567890
 Current Balance: 25000 rupees
+```
