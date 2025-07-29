@@ -2,6 +2,7 @@
 
 This is a Java Swing-based desktop application that simulates a simple banking system. It supports both user and admin functionality with a graphical interface for managing accounts. Data is stored persistently using file-based storage with JSON, and PINs are encrypted using SHA-256.
 
+---
 
 ## Features
 
@@ -31,6 +32,35 @@ This is a Java Swing-based desktop application that simulates a simple banking s
 - All account data is stored in `accounts.txt` as JSON
 - Transaction histories are stored in individual files: `<accountNumber>_history.txt`
 
+---
+
+## Project Structure
+
+```
+Bank Account Simulation/
+│
+├── gui/
+│   ├── AdminDashboardFrame.java
+│   ├── DashboardFrame.java
+│   ├── LoginFrame.java
+│   └── RegisterFrame.java
+│
+├── model/
+│   └── Account.java
+│
+├── util/
+│   ├── AdminConstants.java
+│   ├── FileUtil.java
+│   └── HashUtil.java
+│
+├── lib/
+│   └── gson-2.10.1.jar
+│
+├── Main.java
+└── accounts.txt (auto-generated at runtime)
+```
+
+---
 
 ## Compilation and Execution Instructions
 
@@ -47,44 +77,53 @@ _Note: Use `:` instead of `;` on macOS/Linux._
 3. Run the application:
 
 ```bash
-javac BankApp.java
-java BankApp
+java -cp ".;lib/gson-2.10.1.jar" Main
+```
+
+---
+
+## Admin Login Credentials
+
+These are set in the `AdminConstants.java` file. You can change them if needed.
+
+```java
+public class AdminConstants {
+    public static final String ADMIN_USERNAME = "admin";
+    public static final String ADMIN_PASSWORD = "enteryourpasswordhere";
+}
+```
+
+---
+
+## Example Usage
+
+### Registering a User
+- Enter name, unique account number, and a PIN
+- The account will be saved in `accounts.txt` with PIN encrypted
+
+### Logging In as User
+- After entering valid credentials, users can:
+  - Deposit/withdraw money
+  - View balance and history
+  - See a summary of the account
+
+### Logging In as Admin
+- After successful admin login, the admin can:
+  - View all user accounts
+  - Delete/terminate accounts
+
+---
+
+## Requirements
+
+- Java 8 or later
+- GSON library (`gson-2.10.1.jar` in `lib/` folder)
+
+---
+
+## Notes
+
+- Accounts and transaction files are stored locally. Deleting an account removes the user's data from `accounts.txt`, but not their individual transaction history file.
+- Data is not stored in a database. This app is file-driven for simplicity and educational purposes.
 
 
-# Usage Example
-
-1. Login
-2. Register
-0. Exit
-Choice: 2
-Enter Name: John Doe
-Enter Account Number: 1234567890
-Set PIN: 1234
-Registration complete.
-
-1. Login
-2. Register
-0. Exit
-Choice: 1
-Enter Account Number: 1234567890
-Enter PIN: 1234
-Login successful.
-
-1. Deposit
-2. Withdraw
-3. Balance
-4. Transaction History
-5. Summary
-0. Logout
-Choice: 1
-Amount: 50000
-Deposited 50000 rupees
-
-Choice: 2
-Amount: 25000
-Withdrew 25000 rupees
-
-Choice: 5
-Account Holder: John Doe
-Account Number: 1234567890
-Current Balance: 25000 rupees
