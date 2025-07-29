@@ -1,4 +1,6 @@
 *.class
+bin/
+data/accounts.json
 accounts.txt
 *_history.txt
 *.log
